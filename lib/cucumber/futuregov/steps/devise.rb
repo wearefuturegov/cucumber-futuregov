@@ -28,10 +28,10 @@ module Cucumber
       end
 
       def sign_out_as(user)
-        sign_out
+        click_sign_out_button
       end
 
-      def sign_out
+      def click_sign_out_button
         node = find(:xpath, "//form[contains(@action,'sign_out')]")
       rescue Capybara::Ambiguous
         # FIXME: this sucks, at least make the warning clearer, also look at
@@ -48,8 +48,8 @@ module Cucumber
         should_see_sign_out
       end
 
-      def should_see_sign_out
-        should have_xpath("//form[contains(@action,'sign_out')]")
+      def should_see_sign_out_button
+        should have_xpath("//form[contains(@action,'sign_out')]//input[type='submit']")
       end
 
     end
