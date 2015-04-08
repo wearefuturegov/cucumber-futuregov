@@ -1,2 +1,1 @@
-require 'cucumber/futuregov/steps/validation'
-
+require_relative 'step_definitions/validation_steps'

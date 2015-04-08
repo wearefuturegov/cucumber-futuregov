@@ -1,1 +1,1 @@
-require 'cucumber/futuregov/steps/devise'
+require_relative 'step_definitions/devise_steps'
