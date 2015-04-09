@@ -46,7 +46,7 @@ module Cucumber
         end
 
         def should_be_signed_in_as(user)
-          should_see_sign_out
+          should_see_sign_out_button
         end
 
         def should_see_sign_out_button
