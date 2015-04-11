@@ -3,14 +3,16 @@ module Cucumber
     module Helpers
       module CollectionHelper
 
-        def should_see_list_of(things)
-          # warning: use an id to identify the collection element if possible
-          # as the alternate selector matches elements with a class attribtue
-          # that contains the collection name, e.g. foos will match foosball.
-          # TODO: consider reworking this to be more specific
-          should have_xpath(
-            "//*[@id='#{things}' or contains(@class,'#{things}')]"
-          )
+        def should_see_list_of(things, options={})
+          # WARNING: partial matches on list class name possible. For example,
+          # should_see_list_of(:foos) matches <div class="foosball">. This might
+          # be ok, it might even be desirable, but it's also subject to change.
+          locator = "//body//*[@id='#{things}' or contains(@class,'#{things}')]"
+          within(:xpath, locator) do
+            should have_css(
+              ".#{things.singularize}", count: options[:count]
+            )
+          end
         end
 
       end
